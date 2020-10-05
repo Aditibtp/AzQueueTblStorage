@@ -15,7 +15,11 @@ namespace AzQueueTblStorage
         static async Task Main(string[] args)
         {
 
-            CloudTable table = await Common.CreateTableAsync("YouTubeWebPageRecords");
+            CloudTable table = await TableUtil.CreateTableAsync("YouTubeWebPageRecords");
+            YouTubeWebPageRecords yt = new YouTubeWebPageRecords();
+            TableUtil.CreateMessage(table, yt);
+
+
             Console.ReadKey();
         }
     }

@@ -8,7 +8,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace AzQueueTblStorage
 {
-    class Common
+    class TableUtil
     {
         public static CloudStorageAccount CreateStorageAccountFromConnectionString(string storageConnectionString)
         {
@@ -59,11 +59,12 @@ namespace AzQueueTblStorage
             return table;
         }
 
-        static void CreateMessage(CloudTable table, YouTubeWebPageRecords video)
+        public static void CreateMessage(CloudTable table, YouTubeWebPageRecords video)
         {
             TableOperation insert = TableOperation.Insert(video);
 
             table.Execute(insert);
+            Console.WriteLine($"row inserted in table {table.Name}");
         }
     }
 }
