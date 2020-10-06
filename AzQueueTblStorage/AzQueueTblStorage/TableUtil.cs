@@ -34,7 +34,8 @@ namespace AzQueueTblStorage
 
         public static async Task<CloudTable> CreateTableAsync(string tableName)
         {
-            string storageConnectionString = AppSettings.LoadAppSettings().StorageConnectionString;
+            //string storageConnectionString = AppSettings.LoadAppSettings().StorageConnectionString;
+            string storageConnectionString = await KeyVaultAuthToStorage.GetConnectionString();
 
             // Retrieve storage account information from connection string.
             CloudStorageAccount storageAccount = CreateStorageAccountFromConnectionString(storageConnectionString);
