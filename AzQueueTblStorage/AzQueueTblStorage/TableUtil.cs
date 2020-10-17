@@ -62,7 +62,8 @@ namespace AzQueueTblStorage
 
         public static void CreateMessage(CloudTable table, YouTubeWebPageRecords video)
         {
-            TableOperation insert = TableOperation.Insert(video);
+            //TableOperation insert = TableOperation.Insert(video);
+            TableOperation insert = TableOperation.InsertOrReplace(video); //avoid 409
 
             table.Execute(insert);
             Console.WriteLine($"row inserted in table {table.Name}");
